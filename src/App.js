@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { FaSearch } from 'react-icons';
+import Photo from './Photo';
+
+const mainUrl = 'https://api.unsplash.com/photos/';
+const searchUrl = 'https://api.unsplash.com/search/photos/';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Hello</h2>
+      <Photo />
     </div>
   );
 }
