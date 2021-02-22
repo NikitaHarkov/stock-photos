@@ -32,6 +32,20 @@ function App() {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    const event = window.addEventListener('scroll', () => {
+      if (
+        !loading &&
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 2
+      ) {
+        console.log('it worked here');
+      }
+    });
+    return () => {
+      window.removeEventListener('scroll', event);
+    };
+  }, []);
+
   return (
     <main>
       <section className='search'>
