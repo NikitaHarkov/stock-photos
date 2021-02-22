@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons';
+import { FaSearch } from 'react-icons/fa';
 import Photo from './Photo';
 
 const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
@@ -17,22 +17,40 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
+      setPhotos(data);
     } catch (err) {
-      setLoading(false);
       console.log(err);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchImages();
   }, []);
 
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
-    <div>
-      <h2>Hello</h2>
-      <Photo />
-    </div>
+    <main>
+      <section className='search'>
+        <form className='search-form'>
+          <input type='text' className='form-input' placeholder='search' />
+          <button type='submit' className='submit-btn' onClick={handleSubmit}>
+            <FaSearch />
+          </button>
+        </form>
+      </section>
+      <section className='photos'>
+        <div className='photos-center'>
+          {photos.map(photo => {
+            return <Photo key={photo.id} {...photo} />;
+          })}
+        </div>
+        {loading && <h2 className='loading'>Loading...</h2>}
+      </section>
+    </main>
   );
 }
 
